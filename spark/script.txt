@@ -1,0 +1,5 @@
+bnsRdd1 = sc.textFile("/loudacre/devicestatus.txt")
+bnsRdd2 = bnsRdd1.map(lambda line : line.split(line[19:20]))
+bnsRdd3 = bnsRdd2.map(lambda data : (data[0],data[1],data[2],data[12],data[13]))
+bnsRdd4 = bnsRdd3.map(lambda data : (data[0],data[1].split(' ')[0],data[2],data[3],data[4]))
+bnsRdd4.saveAsTextFile("/loudacre/devicestatus_etl")
